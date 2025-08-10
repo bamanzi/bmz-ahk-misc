@@ -8,9 +8,7 @@ XButton1::Send,^v
 #include _utils.ahk
 
 #include xplorer2.ahk
-
-
-#Include capslock_as_modifier.ahk
+#include firefox.ahk
 #include everything.ahk
 
-
+#Include capslock_as_modifier.ahk
