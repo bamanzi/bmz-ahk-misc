@@ -34,3 +34,5 @@ FavMenu_DialogGetPath_Everything()
 	}
 	;TrayTip, "Could not get the folder name. Make sure you haven't hide the statusbar of Everything, and have ONE select in the list."
 }
+
+#IfWinActive

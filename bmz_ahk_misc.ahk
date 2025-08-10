@@ -11,4 +11,5 @@ XButton1::Send,^v
 #include firefox.ahk
 #include everything.ahk
 
+#IfWinActive
 #Include capslock_as_modifier.ahk

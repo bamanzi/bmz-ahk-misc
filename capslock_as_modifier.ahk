@@ -71,7 +71,7 @@ return
 ;#If WinExist("Capslock Is Down") and (GetKeyState("ScrollLock", "T")==0)
 
 +e::
-	WinActivate, ahk_class Chrome_WidgetWin_1 ahk_exe msedge.exe
+	WinActivate, ahk_class Chrome_WidgetWin_1 ahk_exe msedge.exe,,独立翻译窗口
 	return
 
 +w::
