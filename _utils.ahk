@@ -25,10 +25,18 @@ FavMenu_FindWindowExID(dlg, className, ctrlId)
 }
 
 
+;; Different from WinActivate, activate_or_launch_app would:
+;; - launch application if window not found,
+;; - switch between multiple windows
+
 ;; if window not exist, launch it (run 'launchCmd' or 'appExe';
 ;; if window exist
 ;;     if multiple window found, switch between them;
 ;;     if only one window, activate it
+
+;; turn on this to make windows on other Virtual Desktop visible to WinExist/WinGet/WinActivate
+DetectHiddenWindows,On
+
 activate_or_launch_app(wndTitle, wndClass:="", appExe:="", launchCmd:="nircmd wait 50", excludeTitle:="")
 {
 	wnd_spec := wndTitle
