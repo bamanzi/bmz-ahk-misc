@@ -23,3 +23,58 @@ FavMenu_FindWindowExID(dlg, className, ctrlId)
 			return 0
 	}
 }
+
+
+;; if window not exist, launch it (run 'launchCmd' or 'appExe';
+;; if window exist
+;;     if multiple window found, switch between them;
+;;     if only one window, activate it
+activate_or_launch_app(wndTitle, wndClass:="", appExe:="", launchCmd:="nircmd wait 50", excludeTitle:="")
+{
+	wnd_spec := wndTitle
+	if wndClass
+		wnd_spec := wnd_spec . " ahk_class " . wndClass
+	if appExe
+		wnd_spec := wnd_spec . " ahk_exe " . appExe
+
+	if not wnd_spec
+	{
+		OutputDebug,activate_or_launch_app(): error: no argument given for window
+		return
+	}
+
+	if not WinExist(wnd_spec, ,excludeTitle)
+	{
+		if not launchCmd
+			launchCmd := appExe
+
+		if launchCmd
+		{
+			Run,%launchCmd%
+		}
+		else
+			OutputDebug,activate_or_launch_app(): error: At lease one argument of 'appExe' or 'launchCmd' should be given.
+
+	} else
+	{
+		WinGet,allHwnds,List,%wnd_spec%
+		if (allHwnds>1)
+		{
+			;; switch between multiple windows of same application
+			curHwnd := WinActive("A")
+
+			Loop, %allHwnds%
+			{
+				thisHwnd := allHwnds%A_Index%
+
+				if (curHwnd == thisHwnd)
+				{
+					OutputDebug,current window belongs to target, we'll activate other window.
+					WinActivateBottom, %wnd_spec%, %excludeTitle%
+					return
+				}
+			}
+		}
+		WinActivate, %wnd_spec%, %excludeTitle%
+	}
+}

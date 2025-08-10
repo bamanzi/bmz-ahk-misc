@@ -71,7 +71,8 @@ return
 ;#If WinExist("Capslock Is Down") and (GetKeyState("ScrollLock", "T")==0)
 
 +e::
-	WinActivate, ahk_class Chrome_WidgetWin_1 ahk_exe msedge.exe,,独立翻译窗口
+	;;WinActivate, ahk_class Chrome_WidgetWin_1 ahk_exe msedge.exe,,独立翻译窗口
+	activate_or_launch_app("", "Chrome_WidgetWin_1", "msedge.exe", """C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"" --profile-directory=Default", "独立翻译窗口")
 	return
 
 +w::
@@ -83,15 +84,24 @@ return
 	return
 
 +d::
-	WinActivate, ahk_class TTOTAL_CMD ahk_exe doublecmd.exe
+	activate_or_launch_app("", "TTOTAL_CMD", "doublecmd.exe", "D:\wintools\doublecmd\doublecmd.exe")
+	return
+
++x::
+	activate_or_launch_app("", "ATL:ExplorerFrame", "", "D:\wintools\xplorer2\xplorer2_lite.exe")
 	return
 
 ;`::ScrollLock
+
 +`::
 	spec = ahk_class AutoHotkeyGUI ahk_exe winspy64.exe
 	if not WinExist(spec)
 		Run,D:\devtools\winspy\winspy-ahk\WinSpy64.exe
 	else
-		WinActivate,%spec%
+		WinActivate,%spec%,,WinSpy - Tree
+	return
+
++s::
+	WinActivate, ahk_class SciTEWindow
 	return
 #If
