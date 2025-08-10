@@ -5,6 +5,11 @@ WheelRight::End
 XButton1::Send,^v
 
 
+#include _utils.ahk
+
+#include xplorer2.ahk
+
+
 #Include capslock_as_modifier.ahk
 #include everything.ahk
 
