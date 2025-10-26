@@ -1,6 +1,10 @@
 ;; xplorer2 (lite)
 
+#include _utils.ahk
+
 #IfWinActive ahk_class ATL:ExplorerFrame
+
+;; find text with dnGrep
 !F7::
    WinGet, hwnd_x2, ID, A
    rebar := Favmenu_FindWindowExId(hwnd_x2,  "ReBarWindow32", 0)
@@ -17,9 +21,35 @@
 	}
 return
 
+;; find files with Everything
 ^f::
-    ; ....
-    Run,"C:\Program Files\Everything\Everything.exe" -path "%curpath%"
+	WinGet, hwnd_x2, ID, A
+	ControlGetText, curpath, ComboBox1, ahk_id %hwnd_x2%
+	if curpath<>
+		Run,"C:\Program Files\Everything\Everything.exe" -path "%curpath%"
 return
 
+
+;;
+F3::
+	;; set focus to address bar
+	Send,{F10}
+
+	Send,{Backspace}{Backspace}
+
+	SendInput,> D:\wintools\UniversalViewer\Viewer.exe $F
+
+	Send,{Enter}
+return
+
+F4::
+	;; set focus to address bar
+	Send,{F10}
+
+	Send,{Backspace}{Backspace}
+
+	SendInput,> D:\wintools\BowPad.exe $F
+
+	Send,{Enter}
+return
 #IfWinActive
