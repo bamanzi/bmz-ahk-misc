@@ -9,7 +9,9 @@ Gui, 99:Destroy
 return
 
 #If WinExist("Capslock Is Down") ;;and (GetKeyState("ScrollLock", "T")==1)
+
 	/::CapsLock
+	\::ScrollLock
 
 ;; --8< --   mimic some readline keys
 	a::Home
@@ -39,40 +41,108 @@ return
 	;; paste (Shift+Insert)
 	v::Send,+{Insert}
 
+	p::Send,{PgDn}
+	n::Send,{PgUp}
 
-    1::F11
-	2::F12
-	3::F13
-	4::F14
-	5::F15
-	6::F16
-	7::F17
-	8::F18
-	9::F19
-	0::F20
-	F1::F21
-	F2::F22
-	F3::F23
-	F4::F24
+	F1::  F11
+	F2::  F12
+	F3::  F13
+	F4::  F14
+	F5::  F15
+	F6::  F16
+	F7::  F17
+	F8::  F18
+	F9::  F19
+	F10:: F20
+	F11:: F21
+	F12:: F22
 
+	+F1::  +F11
+	+F2::  +F12
+	+F3::  +F13
+	+F4::  +F14
+	+F5::  +F15
+	+F6::  +F16
+	+F7::  +F17
+	+F8::  +F18
+	+F9::  +F19
+	+F10:: +F20
+	+F11:: +F21
+	+F12:: +F22
 
-	;; shorthands for Win+Ctrl+Alt+?
-	q::>!^#q
-	s::>!^#s
-	w::>!^#w
-	z::>!^#z
-	x::>!^#x
+	!F1::  !F11
+	!F2::  !F12
+	!F3::  !F13
+	!F4::  !F14
+	!F5::  !F15
+	!F6::  !F16
+	!F7::  !F17
+	!F8::  !F18
+	!F9::  !F19
+	!F10:: !F20
+	!F11:: !F21
+	!F12:: !F22
+
+	1:: ^F11
+	2:: ^F12
+	3:: ^F13
+	4:: ^F14
+	5:: ^F15
+	6:: ^F16
+	7:: ^F17
+	8:: ^F18
+	9:: ^F19
+	0:: ^F20
+
+	!1:: !^F11
+	!2:: !^F12
+	!3:: !^F13
+	!4:: !^F14
+	!5:: !^F15
+	!6:: !^F16
+	!7:: !^F17
+	!8:: !^F18
+	!9:: !^F19
+	!0:: !^F20
+
+	+1:: +^F11
+	+2:: +^F12
+	+3:: +^F13
+	+4:: +^F14
+	+5:: +^F15
+	+6:: +^F16
+	+7:: +^F17
+	+8:: +^F18
+	+9:: +^F19
+	+0:: +^F20
 
 	Tab::AppsKey
 
-`::ScrollLock
+	;; shorthands for Win+Ctrl+Alt+?
+	^q::>!^#q
+	^w::>!^#w
+	^a::>!^#a
+	^s::>!^#s
+	^z::>!^#z
+	^x::>!^#x
+
 
 ;#If
 ;#If WinExist("Capslock Is Down") and (GetKeyState("ScrollLock", "T")==0)
 
+
+g::
+	WinGet,procpath,ProcessPath,A
+	Run,D:\wintools\doublecmd\doublecmd.exe -C "%procpath%"
+	return
+
 +e::
 	;;WinActivate, ahk_class Chrome_WidgetWin_1 ahk_exe msedge.exe,,独立翻译窗口
 	activate_or_launch_app("", "Chrome_WidgetWin_1", "msedge.exe", """C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"" --profile-directory=Default", "独立翻译窗口")
+	return
+
++f::
+	WinActivate, ahk_class MozillaWindowClass ahk_exe firefox.exe
 	return
 
 +w::
@@ -104,4 +174,13 @@ return
 +s::
 	WinActivate, ahk_class SciTEWindow
 	return
+
+space::
+	;; move active window to current monitor (where mouse cursor is)
+	MoveWindowToCurrentMonitor()
+	return
+
 #If
+
+;; RAlt+V
+>!v::Send,{PgUp}
