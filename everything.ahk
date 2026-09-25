@@ -29,30 +29,6 @@
 	}
 	return
 
-
-F3::
-	WinGet,dlgHWND,ID,A
-
-	selpath := Everything_get_path_of_selected_item(dlgHWND, true)
-	if selpath<>
-	{
-		OutputDebug,found Everything selected row: %selpath%
-		;;Run,D:\wintools\QuickLook\QuickLook "%selpath%"
-		Run,D:\wintools\UniversalViewer\Viewer.exe "%selpath%"
-	}
-	return
-
-F4::
-	WinGet,dlgHWND,ID,A
-
-	selpath := Everything_get_path_of_selected_item(dlgHWND, true)
-	if selpath<>
-	{
-		OutputDebug,found Everything selected row: %selpath%
-		Run,D:\wintools\BowPad.exe "%selpath%"
-	}
-	return
-
 Everything_get_path_of_selected_item(dlgHWND, includeFilename=false)
 {
 	ControlGet,rows,List,Focused,SysListView321, ahk_id %dlgHWND%
@@ -79,4 +55,45 @@ Everything_get_path_of_selected_item(dlgHWND, includeFilename=false)
 	;TrayTip, "Could not get the folder name. Make sure you haven't hide the statusbar of Everything, and have ONE select in the list."
 }
 
+
+everything_open_selected_file_with(cmdline)
+{
+	WinGet,dlgHWND,ID,A
+	selpath := Everything_get_path_of_selected_item(dlgHWND, true)
+
+	if selpath<>
+	{
+		OutputDebug,try to launching: %cmdline% "%selpath%"
+		Run,%cmdline% "%selpath%"
+	}
+}
+
+
+F3::
+	everything_open_selected_file_with("D:\wintools\UniversalViewer\Viewer.exe")
+	return
+
+F4::
+	everything_open_selected_file_with("D:\wintools\F4Menu.exe -d")
+	return
+
+^F4::
+	everything_open_selected_file_with("D:\wintools\F4Menu.exe")
+	return
+
+F12 & n::
+	everything_open_selected_file_with("D:\wintools\notepad++\notepad++.exe")
+	return
+
+F12 & c::
+	everything_open_selected_file_with("D:\Programs\CudaText\cudatext.exe")
+	return
+
+F12 & g::
+	everything_open_selected_file_with("D:\Programs\geany\geany.exe")
+	return
+
+F12 & e::
+	everything_open_selected_file_with("emacsclient.exe")
+	return
 #IfWinActive

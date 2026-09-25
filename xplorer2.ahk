@@ -30,26 +30,42 @@ return
 return
 
 
+xplorer2_open_selected_file_with(exepath)
+{
+	;; set focus to address bar
+	Send,{F10}
+
+	Send,{Backspace}{Backspace}
+
+	SendInput,> %exepath% $F
+
+	Send,{Enter}
+}
+
 ;;
 F3::
-	;; set focus to address bar
-	Send,{F10}
-
-	Send,{Backspace}{Backspace}
-
-	SendInput,> D:\wintools\UniversalViewer\Viewer.exe $F
-
-	Send,{Enter}
-return
+	xplorer2_open_selected_file_with("D:\wintools\UniversalViewer\Viewer.exe")
+	return
 
 F4::
-	;; set focus to address bar
-	Send,{F10}
+	xplorer2_open_selected_file_with("D:\wintools\F4Menu.exe -d")
+	return
 
-	Send,{Backspace}{Backspace}
+F12 & n::
+	xplorer2_open_selected_file_with("D:\wintools\notepad++\notepad++.exe")
+	return
 
-	SendInput,> D:\wintools\BowPad.exe $F
+F12 & c::
+	xplorer2_open_selected_file_with("D:\Programs\CudaText\cudatext.exe")
+	return
 
-	Send,{Enter}
-return
+F12 & g::
+	xplorer2_open_selected_file_with("D:\Programs\geany\geany.exe")
+	return
+
+F12 & e::
+	xplorer2_open_selected_file_with("emacsclient.exe")
+	return
+
+
 #IfWinActive
