@@ -39,8 +39,17 @@ doublecmd_open_selected_file_with(cmdline)
 	Run,%cmdline% "%selpath%
 }
 
++F3::
+	doublecmd_open_selected_file_with("D:\wintools\UniversalViewer\Viewer.exe")
+	return
+
 ^F4::
 	doublecmd_open_selected_file_with("D:\wintools\F4Menu.exe")
+	return
+
+
+F12 & o::
+	doublecmd_open_selected_file_with("openwith.exe")
 	return
 
 F12 & n::

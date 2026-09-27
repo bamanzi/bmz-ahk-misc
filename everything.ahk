@@ -46,7 +46,7 @@ Everything_get_path_of_selected_item(dlgHWND, includeFilename=false)
 				OutputDebug,found Everything column: COL%A_Index%: %selpath%
 				if includeFilename
 					;; FIXME: this only works when FILENAME is the first column
-					return selpath . "/" . cols[1]
+					return selpath . "\" . cols[1]
 				else
 					return selpath
 			}
@@ -79,6 +79,11 @@ F4::
 
 ^F4::
 	everything_open_selected_file_with("D:\wintools\F4Menu.exe")
+	return
+
+
+F12 & o::
+	everything_open_selected_file_with("openwith.exe")
 	return
 
 F12 & n::

@@ -51,6 +51,11 @@ F4::
 	xplorer2_open_selected_file_with("D:\wintools\F4Menu.exe -d")
 	return
 
+F12 & o::
+	xplorer2_open_selected_file_with("openwith.exe")
+	return
+
+
 F12 & n::
 	xplorer2_open_selected_file_with("D:\wintools\notepad++\notepad++.exe")
 	return
