@@ -86,3 +86,10 @@ activate_or_launch_app(wndTitle, wndClass:="", appExe:="", launchCmd:="nircmd wa
 		WinActivate, %wnd_spec%, %excludeTitle%
 	}
 }
+
+switch_ime_to_eng() {
+	PostMessage, 0x50, 0, 0x4090409,, A
+}
+
+
+

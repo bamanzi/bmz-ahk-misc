@@ -1,6 +1,6 @@
 ;; xplorer2 (lite)
 
-#include _utils.ahk
+;;#include _utils.ahk
 
 #IfWinActive ahk_class ATL:ExplorerFrame
 
